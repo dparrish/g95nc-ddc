@@ -1,8 +1,9 @@
 # Samsung Odyssey G95NC Linux PIP/PBP control
 
-This is a small Linux command-line controller for the Samsung Odyssey Neo G9
-57-inch (G95NC). It uses the monitor's DDC/CI interface through `ddcutil`;
-there is no Samsung application or USB upstream connection required.
+This is a small Linux command-line controller and KDE/Qt system-tray app for
+the Samsung Odyssey Neo G9 57-inch (G95NC). It uses the monitor's DDC/CI
+interface through `ddcutil`; there is no Samsung application or USB upstream
+connection required.
 
 ## What was reverse engineered
 
@@ -54,6 +55,33 @@ the display or logging in again. Confirm the bus with:
 ```sh
 ddcutil detect
 ```
+
+## KDE system tray
+
+Install the optional Qt tray dependency:
+
+```sh
+python3 -m pip install '.[tray]'
+```
+
+Start the tray app:
+
+```sh
+g95nc-tray --display 1
+```
+
+The tray menu provides:
+
+- **PBP mode → PBP last**
+- **PBP mode → Off**
+- **Sound source → Screen 1 / main**
+- **Sound source → Screen 2 / sub**
+
+The tray shows a desktop notification after a successful write and an error
+notification when ddcutil rejects a command. To add it to the KDE application
+launcher, install `g95nc-ddc.desktop` into
+`~/.local/share/applications/`. Start the application manually or configure
+KDE autostart according to your desktop-session policy.
 
 ## Usage
 

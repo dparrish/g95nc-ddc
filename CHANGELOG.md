@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.0 — 2026-10-20
+
+- Add an optional Qt/KDE system-tray application.
+- Add tray actions for PBP-last, PBP-off, Screen 1 audio, and Screen 2 audio.
+- Add the `g95nc-tray` console entry point and KDE desktop launcher.
+
 ## 0.1.0 — 2026-10-20
 
 Initial public release.

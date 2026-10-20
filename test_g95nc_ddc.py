@@ -2,6 +2,7 @@ import unittest
 from unittest.mock import patch
 
 from g95nc_ddc import Ddcutil, VcpValue, build_parser, cmd_pip, cmd_sound, parse_terse_line
+from g95nc_tray import TrayController
 
 
 class ParseTests(unittest.TestCase):
@@ -50,6 +51,19 @@ class CommandTests(unittest.TestCase):
     def test_cli_accepts_sound(self):
         args = build_parser().parse_args(["--display", "1", "sound", "screen2"])
         self.assertEqual((args.command, args.source), ("sound", "screen2"))
+
+    def test_tray_actions_write_mode_and_sound_vcps(self):
+        ddc = Ddcutil("ddcutil", display=1)
+        with patch.object(ddc, "set", return_value=None) as write:
+            controller = TrayController(ddc)
+            controller.set_mode("pbp-last")
+            controller.set_mode("off")
+            controller.set_sound("screen1")
+            controller.set_sound("screen2")
+        self.assertEqual(
+            [call.args[:2] for call in write.call_args_list],
+            [(0xE2, 0x0001), (0xE2, 0x0000), (0xE8, 0x0000), (0xE8, 0x0001)],
+        )
 
 
 if __name__ == "__main__":

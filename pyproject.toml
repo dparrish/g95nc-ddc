@@ -4,17 +4,16 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "g95nc-ddc"
-version = "0.1.0"
+version = "0.2.0"
 description = "Linux DDC/CI control for Samsung Odyssey G95NC PIP/PBP"
 readme = "README.md"
 requires-python = ">=3.10"
-license = { file = "LICENSE" }
+license = "MIT"
 authors = [{ name = "dparrish" }]
-keywords = ["ddc", "ddc-ci", "monitor", "samsung", "g95nc", "pip", "pbp"]
+keywords = ["ddc", "ddc-ci", "monitor", "samsung", "g95nc", "pip", "pbp", "kde", "tray"]
 classifiers = [
   "Environment :: Console",
   "Intended Audience :: End Users/Desktop",
-  "License :: OSI Approved :: MIT License",
   "Operating System :: POSIX :: Linux",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3 :: Only",
@@ -22,6 +21,8 @@ classifiers = [
   "Topic :: System :: Hardware",
 ]
 dependencies = []
+[project.optional-dependencies]
+tray = ["PySide6>=6.5"]
 
 [project.urls]
 Homepage = "https://github.com/dparrish/g95nc-ddc"
@@ -30,6 +31,7 @@ Issues = "https://github.com/dparrish/g95nc-ddc/issues"
 
 [project.scripts]
 g95nc-ddc = "g95nc_ddc:main"
+g95nc-tray = "g95nc_tray:main"
 
 [tool.setuptools]
-py-modules = ["g95nc_ddc"]
+py-modules = ["g95nc_ddc", "g95nc_tray"]

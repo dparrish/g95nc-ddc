@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Samsung G95NC Tray
+Comment=Control Samsung Odyssey G95NC PBP mode and sound source
+Exec=g95nc-tray
+Icon=video-display
+Terminal=false
+Categories=Utility;HardwareSettings;
+X-KDE-StartupNotify=false
